@@ -66,7 +66,10 @@ public class Scripture
         var random = new Random();
         var availableWords = Words.Where(w => !w.IsHidden).ToList();
 
-        for (int i = 0; i < count && availableWords.Count > 0; i++)
+        // Limit the count to the number of available words
+        int wordsToHide = Math.Min(count, availableWords.Count);
+
+        for (int i = 0; i < wordsToHide && availableWords.Count > 0; i++)
         {
             var index = random.Next(availableWords.Count);
             availableWords[index].Hide();

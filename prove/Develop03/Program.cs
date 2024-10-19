@@ -96,7 +96,7 @@ public class Program
             if (input?.ToLower() == "quit")
                 break;
 
-            scripture.HideRandomWords(2); // Hide 2 random words each time
+            scripture.HideRandomWords(25);
         }
     }
 }

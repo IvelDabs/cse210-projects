@@ -44,7 +44,6 @@ public class Activity
         Console.WriteLine();
     }
 
-    // Feature: Logging Activity
     protected void LogActivity(string activityName)
     {
         using (StreamWriter sw = new StreamWriter("activity_log.txt", true))
@@ -52,18 +51,30 @@ public class Activity
             sw.WriteLine($"{DateTime.Now}: Completed {activityName}");
         }
     }
+
+    protected void ShowAnimation()
+    {
+        Console.Write("Loading");
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write(".");
+            Thread.Sleep(500);
+        }
+        Console.WriteLine();
+    }
 }
 
 public class BreathingActivity : Activity
 {
-    public BreathingActivity() : base("Breathing Activity", 
-        "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.")
+    public BreathingActivity() : base("Breathing Activity",
+        "This activity will help you relax by walking you through breathing in and out slowly.")
     {
     }
 
     public void StartBreathingSession()
     {
         Start();
+        ShowAnimation();
         for (int i = 0; i < _duration; i += 4)
         {
             BreathingAnimation();
@@ -71,7 +82,6 @@ public class BreathingActivity : Activity
         End();
     }
 
-    // Feature: Breathing Animation
     private void BreathingAnimation()
     {
         Console.Write("Inhale ");
@@ -100,7 +110,7 @@ public class ReflectionActivity : Activity
         "Think of a time when you helped someone in need."
     };
 
-    public ReflectionActivity() : base("Reflection Activity", 
+    public ReflectionActivity() : base("Reflection Activity",
         "This activity will help you reflect on times in your life when you have shown strength and resilience.")
     {
     }
@@ -108,6 +118,7 @@ public class ReflectionActivity : Activity
     public void StartReflectionSession()
     {
         Start();
+        ShowAnimation();
         Random rand = new Random();
         string prompt = _prompts[rand.Next(_prompts.Count)];
         Console.WriteLine(prompt);
@@ -138,7 +149,7 @@ public class ListingActivity : Activity
         "Who are some of your personal heroes?"
     };
 
-    public ListingActivity() : base("Listing Activity", 
+    public ListingActivity() : base("Listing Activity",
         "This activity will help you reflect on the good things in your life by having you list as many things as you can.")
     {
     }
@@ -146,6 +157,7 @@ public class ListingActivity : Activity
     public void StartListingSession()
     {
         Start();
+        ShowAnimation();
         Random rand = new Random();
         string prompt = _prompts[rand.Next(_prompts.Count)];
         Console.WriteLine(prompt);

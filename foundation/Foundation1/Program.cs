@@ -1,6 +1,49 @@
 using System;
 using System.Collections.Generic;
 
+public class Comment
+{
+    public string CommenterName { get; set; }
+    public string Text { get; set; }
+
+    public Comment(string commenterName, string text)
+    {
+        CommenterName = commenterName;
+        Text = text;
+    }
+}
+
+public class Video
+{
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public int LengthInSeconds { get; set; }
+    private List<Comment> comments;
+
+    public Video(string title, string author, int lengthInSeconds)
+    {
+        Title = title;
+        Author = author;
+        LengthInSeconds = lengthInSeconds;
+        comments = new List<Comment>();
+    }
+
+    public void AddComment(Comment comment)
+    {
+        comments.Add(comment);
+    }
+
+    public int GetCommentCount()
+    {
+        return comments.Count;
+    }
+
+    public List<Comment> GetComments()
+    {
+        return comments;
+    }
+}
+
 class Program
 {
     static void Main(string[] args)
